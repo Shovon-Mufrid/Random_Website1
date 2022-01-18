@@ -42,7 +42,8 @@
                         <li><a href="service_head.php" class="dropdown-item text-warning">Service Heading</a></li>
                         <li>
                             <hr class="dropdown-divider">
-                        </li>  
+                        </li>
+                        <li><a href="service_item.php" class="dropdown-item text-secondary">Service Item</a></li>  
 
                     </div>
                 </div>
