@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_status'])) {
 }
 $get_query = "SELECT * FROM service_heads";
 $from_db = mysqli_query($db, $get_query);
-$after_assoc = mysqli_fetch_assoc($from_db);
+// $after_assoc = mysqli_fetch_assoc($from_db);
 ?>
 
 <section>
@@ -56,14 +56,26 @@ $after_assoc = mysqli_fetch_assoc($from_db);
                                     <th>Black Heading</th>
                                     <th>Color Heading</th>
                                     <th>Sub Heading</th>
+                                    <th>Action</th>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><?= $after_assoc['black_head']?></td>
-                                        <td><?= $after_assoc['color_head']?></td>
-                                        <td><?= $after_assoc['sub_head']?></td>
+                                        <?php foreach($from_db as $service_head): ?>
+                                        <td><?= $service_head['black_head']?></td>
+                                        <td><?= $service_head['color_head']?></td>
+                                        <td><?= $service_head['sub_head']?></td>
+                                        <td>
+                                            <?php if($service_head['active_status'] == 2): ?>
+                                             <a href="service_head_active.php?id=<?= $service_head['id'] ?>" class="btn btn-sm btn-success"> Make Active   </a> 
+                                            <?php else: ?>  
+                                                <a href="#" class="btn btn-sm btn-danger"> Make Dective   </a>           
+                                            <?php endif?>
+
+
+                                            </td>
                                         <!-- change from localhost if active status is not given -->
                                     </tr>
+                                    <?php endforeach ?>
                                 </tbody>
                             </table>
 

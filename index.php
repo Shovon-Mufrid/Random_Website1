@@ -122,31 +122,7 @@ https://templatemo.com/tm-545-finance-business
       <?php
       endforeach
       ?>
-      <!-- // Item2 -->
-      <!-- Item2 -->
-      <!-- <div class="item item-2">
-            <div class="img-fill">
-                <div class="text-content">
-                  <h6>we are here to support you</h6>
-                  <h4>Accounting<br>&amp; Management</h4>
-                  <p>You are allowed to use this template for your company websites. You are NOT allowed to re-distribute this template ZIP file on any template download website. Please contact TemplateMo for more detail.</p>
-                  <a href="services.html" class="filled-button">our services</a>
-                </div>
-            </div>
-          </div> -->
-      <!-- // Item3 -->
-      <!-- Item3 -->
-      <!-- <div class="item item-3">
-            <div class="img-fill">
-                <div class="text-content">
-                  <h6>we have a solid background</h6>
-                  <h4>Market Analysis<br>&amp; Statistics</h4>
-                  <p>You can download, edit and use this layout for your business website. Phasellus lacinia ac sapien vitae dapibus. Mauris ut dapibus velit cras interdum nisl ac urna tempor mollis.</p>
-                  <a href="about.html" class="filled-button">learn more</a>
-                </div>
-            </div>
-          </div> -->
-      <!-- // Item -->
+
     </div>
   </div>
   <!-- Banner Ends Here -->
@@ -171,17 +147,19 @@ https://templatemo.com/tm-545-finance-business
       <div class="row">
         <div class="col-md-12">
           <?php
-          $get_query = "SELECT * FROM service_heads";
+          $get_query = "SELECT * FROM service_heads WHERE active_status = 1";
           $from_db = mysqli_query($db, $get_query);
-          $after_assoc = mysqli_fetch_assoc($from_db);
+          //$after_assoc = mysqli_fetch_assoc($from_db);
+          foreach ($from_db as $service_head) :
 
           ?>
-          <div class="section-heading">
-            <h2><?= $after_assoc['black_head'] ?><em><?= $after_assoc['color_head'] ?></em></h2>
-            <!-- <h2>Financial <em>Services</em></h2> -->
-            <span><?= $after_assoc['sub_head'] ?></span>
-            <!-- <span>Aliquam id urna imperdiet libero mollis hendrerit</span> -->
-          </div>
+            <div class="section-heading">
+              <h2><?= $service_head['black_head'] ?><em><?= $service_head['color_head'] ?></em></h2>
+              <!-- <h2>Financial <em>Services</em></h2> -->
+              <span><?= $service_head['sub_head'] ?></span>
+              <!-- <span>Aliquam id urna imperdiet libero mollis hendrerit</span> -->
+            </div>
+          <?php endforeach ?>
         </div>
 
 
@@ -191,7 +169,7 @@ https://templatemo.com/tm-545-finance-business
                           WHERE active_status = 1
                           ORDER BY id DESC 
                           LIMIT 3";
-                          //LIMIT of item shown in Website
+        //LIMIT of item shown in Website
         $item_from_db = mysqli_query($db, $get_query_item);
         foreach ($item_from_db as $items) :
         ?>
@@ -209,33 +187,13 @@ https://templatemo.com/tm-545-finance-business
         <?php
         endforeach
         ?>
-        <!-- <div class="col-md-4">
-            <div class="service-item">
-              <img src="frontend/assets/images/service_02.jpg" alt="">
-              <div class="down-content">
-                <h4>Market Analysis</h4>
-                <p>Sed tincidunt dictum lobortis. Aenean tempus diam vel augue luctus dignissim. Nunc ornare leo tortor.</p>
-                <a href="" class="filled-button">Read More</a>
-              </div>
-            </div>
-          </div> -->
-        <!-- <div class="col-md-4">
-            <div class="service-item">
-              <img src="frontend/assets/images/service_03.jpg" alt="">
-              <div class="down-content">
-                <h4>Historical Data</h4>
-                <p>Sed tincidunt dictum lobortis. Aenean tempus diam vel augue luctus dignissim. Nunc ornare leo tortor.</p>
-                <a href="" class="filled-button">Read More</a>
-              </div>
-            </div>
-          </div> -->
+
       </div>
     </div>
   </div>
-
   <!-- Service ends here -->
 
-
+  <!-- fun-facts start -->
   <div class="fun-facts">
     <div class="container">
       <div class="row">
@@ -280,6 +238,7 @@ https://templatemo.com/tm-545-finance-business
       </div>
     </div>
   </div>
+  <!-- fun-facts ends -->
 
   <div class="more-info">
     <div class="container">
