@@ -199,40 +199,51 @@ https://templatemo.com/tm-545-finance-business
       <div class="row">
         <div class="col-md-6">
           <div class="left-content">
-            <span>Lorem ipsum dolor sit amet</span>
-            <h2>Our solutions for your <em>business growth</em></h2>
-            <p>Pellentesque ultrices at turpis in vestibulum. Aenean pretium elit nec congue elementum. Nulla luctus laoreet porta. Maecenas at nisi tempus, porta metus vitae, faucibus augue.
-              <br><br>Fusce et venenatis ex. Quisque varius, velit quis dictum sagittis, odio velit molestie nunc, ut posuere ante tortor ut neque.
+            <?php
+            $get_query = "SELECT * FROM funfacts";
+            $from_db = mysqli_query($db, $get_query);
+            $after_assoc_fun = mysqli_fetch_assoc($from_db);
+            ?>
+            <span> <?= $after_assoc_fun['Sub_head'] ?> </span>
+            <h2><?= $after_assoc_fun['White_head'] ?> <em><?= $after_assoc_fun['Color_head'] ?></em></h2>
+            <p><?= $after_assoc_fun['Paragraph1'] ?>
+              <br><br><?= $after_assoc_fun['Paragraph2'] ?>
             </p>
             <a href="" class="filled-button">Read More</a>
           </div>
         </div>
         <div class="col-md-6 align-self-center">
           <div class="row">
+          <?php
+                $get_fun_items_query = "SELECT * FROM funfacts_items WHERE active_status = 1 LIMIT 4 ";
+                $from_db = mysqli_query($db, $get_fun_items_query);
+                foreach($from_db as $fun_items):
+                ?>
             <div class="col-md-6">
-              <div class="count-area-content">
-                <div class="count-digit">945</div>
-                <div class="count-title">Work Hours</div>
+              <div class="count-area-content">           
+                <div class="count-digit"><?=$fun_items['digit']?></div>
+                <div class="count-title"><?=$fun_items['title']?></div>
               </div>
             </div>
-            <div class="col-md-6">
+            <?php endforeach ?>
+            <!-- <div class="col-md-6">
               <div class="count-area-content">
                 <div class="count-digit">1280</div>
                 <div class="count-title">Great Reviews</div>
               </div>
-            </div>
-            <div class="col-md-6">
+            </div> -->
+            <!-- <div class="col-md-6">
               <div class="count-area-content">
                 <div class="count-digit">578</div>
                 <div class="count-title">Projects Done</div>
               </div>
-            </div>
-            <div class="col-md-6">
+            </div> -->
+            <!-- <div class="col-md-6">
               <div class="count-area-content">
                 <div class="count-digit">26</div>
                 <div class="count-title">Awards Won</div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

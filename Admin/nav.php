@@ -44,6 +44,11 @@
                             <hr class="dropdown-divider">
                         </li>
                         <li><a href="service_item.php" class="dropdown-item text-secondary">Service Item</a></li>  
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a href="funfact_head.php" class="dropdown-item text-primary">FunFact Heading</a></li>  
+                        <li><a href="funfact_items.php" class="dropdown-item text-primary">FunFact Items</a></li>  
 
                     </div>
                 </div>
