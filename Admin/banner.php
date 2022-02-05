@@ -66,13 +66,13 @@ $after_assoc = mysqli_fetch_assoc($from_db);
                             </thead>
                             <tbody>
                                 <?php
-                                foreach ($from_db as $key=> $banner) :
+                                foreach ($from_db as $key => $banner) :
 
                                 ?>
                                     <!-- from database -->
                                     <!-- key is used to add id serial to table from 1 -->
                                     <tr>
-                                        <td><?= $key+1 ?> </td>
+                                        <td><?= $key + 1 ?> </td>
                                         <td><?= $banner['ban_sub_title'] ?></td>
                                         <td><?= $banner['ban_title'] ?></td>
                                         <td><?= $banner['details'] ?></td>
@@ -96,18 +96,16 @@ $after_assoc = mysqli_fetch_assoc($from_db);
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                 <?php
-                                                if($banner['read_status'] == 1) :
+                                                if ($banner['read_status'] == 1) :
                                                 ?>
-                                                <a href="ban_deact.php?id=<?= $banner['id'] ?>"
-                                                 class="btn btn-success">Make Deactive</a>
-                                                 <?php
-                                                else:
-                                                    ?>
-                                                 <a href="ban_act.php?id=<?= $banner['id'] ?>" 
-                                                 class="btn btn-primary">Make Active</a>   
-                                                 <?php
-                                            endif
-                                            ?>
+                                                    <a href="ban_deact.php?id=<?= $banner['id'] ?>" class="btn btn-success">Make Deactive</a>
+                                                <?php
+                                                else :
+                                                ?>
+                                                    <a href="ban_act.php?id=<?= $banner['id'] ?>" class="btn btn-primary">Make Active</a>
+                                                <?php
+                                                endif
+                                                ?>
                                                 <a href="banner_edit.php?id=<?= $banner['id'] ?>" class="btn btn-warning">Edit</a>
                                                 <a href="banner_delete.php?id=<?= $banner['id'] ?>" class="btn btn-danger">Delete</a>
                                             </div>
@@ -131,3 +129,29 @@ $after_assoc = mysqli_fetch_assoc($from_db);
 <?php
 require_once('../footer.php');
 ?>
+
+<!-- Sweet alert for banner add -->
+<?php if(isset($_SESSION['banner_success'])): ?>
+
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+
+    Toast.fire({
+        icon: 'success',
+        title: '<?= $_SESSION['banner_success'] ?>'
+    })
+</script>
+
+<?php endif  ?>
+
+<?php unset($_SESSION['banner_success']) ?>

@@ -33,7 +33,10 @@ if ($uploaded_image_original_size <= 2000000) {  //size of image is less than 2M
        $update_query = "UPDATE banners SET image_location='$image_location' WHERE id= $id_from_db ";
 
        mysqli_query($db, $update_query);
-        header('location: banner.php');
+       
+       $_SESSION['banner_success'] = 'Banner Added Successfully'; //sweet alert
+       
+       header('location: banner.php');
     } else {
         echo "no";
     }

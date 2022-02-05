@@ -11,47 +11,45 @@ $paragraph2 = $_POST['para2'];
 $flag = true; // believing that there are data in our form
 
 //validate form blanks
-if(!$sub_head){
+//always show inputted text (else part)
+if (!$sub_head) {
     $_SESSION['sub_err'] = 'Sub Head Requires';
     $flag = false; // data is not here
+} else {
+    $_SESSION['sub_head_done'] = $sub_head;
 }
-if(!$white_head){
+if (!$white_head) {
     $_SESSION['white_err'] = 'White Head Requires';
     $flag = false; // data is not here
+} else {
+    $_SESSION['white_head_done'] = $white_head;
 }
-if(!$color_head){
+if (!$color_head) {
     $_SESSION['color_err'] = 'Color Head Requires';
     $flag = false; // data is not here
 }
-if(!$paragraph1){
+if (!$paragraph1) {
     $_SESSION['para1_err'] = 'Paragraph Requires';
     $flag = false; // data is not here
 }
-if(!$paragraph2){
+if (!$paragraph2) {
     $_SESSION['para2_err'] = 'Paragraph Requires';
     $flag = false; // data is not here
 }
 
-//always show inputted text
-if($flag){
-$_SESSION['sub_head_done'] = $sub_head;
 
-}
-else{
+
+if ($flag) {
+    $insert_q = "INSERT INTO funfacts(Sub_head,White_head,Color_head,Paragraph1,Paragraph2)
+    VALUES('$sub_head', '$white_head', '$color_head', '$paragraph1', '$paragraph2' )";
+    mysqli_query($db, $insert_q);
+
+    unset($_SESSION['sub_head_done']); // data will be removed after inserted
+    unset($_SESSION['white_head_done']);
+    header('location: funfact_head.php');
+
+}else{
     header('location: funfact_head.php');
 }
-if($flag){
-$_SESSION['white_head_done'] = $white_head;
-}
-else{
-    header('location: funfact_head.php');
-}
-
- $insert_q = "INSERT INTO funfacts(Sub_head,White_head,Color_head,Paragraph1,Paragraph2)
-             VALUES('$sub_head', '$white_head', '$color_head', '$paragraph1', '$paragraph2' )"; 
-     mysqli_query($db, $insert_q );
-     header('location: funfact_head.php');
-    
-
 
 ?>

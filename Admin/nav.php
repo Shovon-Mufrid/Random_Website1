@@ -63,7 +63,7 @@
                    <li> <a class="dropdown-item text-warning" href="pass_change.php">Change Password</a></li> 
                    <li><a class="dropdown-item" href="#"></a></li> 
                    <li> <div class="dropdown-divider"></div></li> 
-                   <li> <a class="dropdown-item text-danger" href="../Logout.php">Logout.php</a></li> 
+                   <li> <a class="dropdown-item text-danger" href="../Logout.php">Logout</a></li> 
                 </div>
             </div>
         </div>
